@@ -1,0 +1,75 @@
+.page {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 0.75rem;
+
+  /* 3D card effect */
+  box-shadow:
+    0 8px 0 rgba(0, 0, 0, 0.06),
+    0 20px 32px rgba(0, 0, 0, 0.12);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #0f172a;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.backArrow,
+.nextArrow {
+  font-size: 1.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  background-color: #e5e7eb;
+
+  box-shadow:
+    0 4px 0 rgba(0, 0, 0, 0.15),
+    0 8px 12px rgba(0, 0, 0, 0.12);
+
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.backArrow:hover,
+.nextArrow:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.backArrow:active,
+.nextArrow:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nextArrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
