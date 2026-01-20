@@ -1,0 +1,27 @@
+.wrapper {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* For number + unit combos */
+.inlineGroup {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.75rem;
+}
+
+/* Responsive improvement */
+@media (max-width: 480px) {
+  .inlineGroup {
+    grid-template-columns: 1fr;
+  }
+}

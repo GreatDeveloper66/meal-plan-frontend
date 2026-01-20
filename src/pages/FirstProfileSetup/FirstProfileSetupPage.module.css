@@ -7,26 +7,6 @@
   padding: 1rem;
 }
 
-.card {
-  width: 100%;
-  max-width: 420px;
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 0.75rem;
-
-  /* 3D card effect */
-  box-shadow:
-    0 8px 0 rgba(0, 0, 0, 0.06),
-    0 20px 32px rgba(0, 0, 0, 0.12);
-}
-
-.title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #0f172a;
-}
 
 .fields {
   display: flex;

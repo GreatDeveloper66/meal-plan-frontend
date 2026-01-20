@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./FirstProfileSetupPage.module.css";
 import Input from "../../components/ui/Input/Input";
+import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
+import Card from "../../components/ui/Card/Card";
 
 type FormState = {
   firstName: string;
@@ -55,7 +57,8 @@ export default function FirstProfileSetupPage() {
 
   return (
     <div className={styles.page}>
-      <form className={styles.card} onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <Card title="Create An Account">
         <h1 className={styles.title}>Create An Account</h1>
 
         <div className={styles.fields}>
@@ -88,28 +91,13 @@ export default function FirstProfileSetupPage() {
           />
         </div>
 
-        <div className={styles.navigation}>
-          <button
-            type="button"
-            className={styles.backArrow}
-            onClick={() => navigate("/")}
-            aria-label="Go back"
-          >
-            ←
-          </button>
-
-          <button
-            type="button"
-            className={styles.nextArrow}
-            disabled={!allValid}
-            onClick={handleNext}
-            aria-label="Continue"
-          >
-            →
-          </button>
-        </div>
+        <NavigationFooter
+          onBack={() => navigate("/")}
+          onNext={() => navigate("/second-profile-setup")}
+          nextDisabled={!allValid}
+        />
+        </Card>
       </form>
     </div>
   );
 }
-

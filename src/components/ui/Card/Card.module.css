@@ -1,0 +1,19 @@
+.card {
+  width: 100%;
+  max-width: 30rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+
+  box-shadow:
+    0 8px 0 rgba(0, 0, 0, 0.12),
+    0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
