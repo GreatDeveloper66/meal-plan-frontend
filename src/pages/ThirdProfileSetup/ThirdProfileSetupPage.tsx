@@ -22,7 +22,6 @@ export default function ThirdProfileSetupPage() {
     <div className={styles.wrapper}>
       <form onSubmit={(e) => e.preventDefault()}>
         <Card title="Lifestyle Preferences">
-        <h1 className={styles.title}>Lifestyle Preferences</h1>
 
         <div className={styles.fields}>
           <SelectInput

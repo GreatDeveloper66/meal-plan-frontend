@@ -59,7 +59,6 @@ export default function FirstProfileSetupPage() {
     <div className={styles.page}>
       <form onSubmit={(e) => e.preventDefault()}>
         <Card title="Create An Account">
-        <h1 className={styles.title}>Create An Account</h1>
 
         <div className={styles.fields}>
           <Input

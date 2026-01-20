@@ -22,7 +22,6 @@ export default function SecondProfileSetupPage() {
     <div className={styles.wrapper}>
       <form onSubmit={(e) => e.preventDefault()}>
         <Card title="Create An Account">
-        <h1 className={styles.title}>Create An Account</h1>
 
         <div className={styles.fields}>
           <Input

@@ -4,6 +4,7 @@ import FirstProfileSetupPage from "../pages/FirstProfileSetup/FirstProfileSetupP
 import SecondProfileSetupPage from "../pages/SecondProfileSetup/SecondProfileSetupPage";
 import ThirdProfileSetupPage from "../pages/ThirdProfileSetup/ThirdProfileSetupPage";
 import FourthProfileSetupPage from "../pages/FourthProfileSetupPage/FourthProfileSetupPage";  
+import HubPage from "../pages/Hub/HubPage";
 
 export const Router = () => {
   return (
@@ -19,6 +20,8 @@ export const Router = () => {
         path="/fourth-profile-setup"
         element={<FourthProfileSetupPage />}
       />
+      <Route path="/hub" element={<HubPage />} />
+
       {/* Add remaining routes incrementally */}
     </Routes>
   );
