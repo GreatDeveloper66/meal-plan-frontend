@@ -1,0 +1,98 @@
+.wrapper {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Titles */
+.title {
+  text-align: center;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.subtitle {
+  margin-top: 0.25rem;
+  margin-bottom: 1.75rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+/* Form fields */
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 1rem;
+}
+
+.label select {
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #cbd5f5;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+}
+
+/* Action buttons */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+/* Save */
+.primaryButton {
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.primaryButton:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.primaryButton:disabled {
+  background-color: #bfdbfe;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Cancel */
+.secondaryButton {
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5f5;
+}
+
+.secondaryButton:hover {
+  background-color: #f8fafc;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .actions {
+    flex-direction: column-reverse;
+  }
+}
