@@ -12,6 +12,7 @@ import FirstEditPage from "../pages/FirstEditPage/FirstEditPage";
 import SecondEditPage from "../pages/SecondEditPage/SecondEditPage";
 import GroceriesPage from "../pages/Groceries/GroceriesPage";
 import InfoPage from "../pages/Info/InfoPage";
+import WelcomeCarousel from "../pages/WelcomeCarousel/WelcomeCarousel";
 
 export const Router = () => {
   return (
@@ -35,6 +36,7 @@ export const Router = () => {
       <Route path="/second-edit-page" element={<SecondEditPage />} />
       <Route path="/groceries" element={<GroceriesPage />} />
       <Route path="/info" element={<InfoPage />} />
+      <Route path="/welcome-carousel" element={<WelcomeCarousel />} />
 
       {/* Add remaining routes incrementally */}
     </Routes>

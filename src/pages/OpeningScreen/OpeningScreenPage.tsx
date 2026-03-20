@@ -15,7 +15,7 @@ export default function OpeningScreenPage() {
         <div className={styles.actions}>
           <button
             className={styles.secondaryButton}
-            onClick={() => navigate("/first-profile-setup")}
+            onClick={() => navigate("/welcome-carousel")}
           >
             New User
           </button>
