@@ -14,7 +14,7 @@ export default function HubPage() {
       <div className={styles.grid}>
         <button
           className={`${styles.hubButton} ${styles.dashboard}`}
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/meal-carousel")}
         >
           Dashboard
         </button>
