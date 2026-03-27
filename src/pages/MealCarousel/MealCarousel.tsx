@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./MealCarousel.module.css";
 import Card from "../../components/ui/Card/Card";
-import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
+import Carousel from "../../components/ui/Carousel/Carousel";
+import MealSlide from "../../components/ui/Slides/MealSlide/MealSlide";
 
-// Types for our food data structure
+// Types and helper functions
 type FoodItem = {
   id: string;
   name: string;
@@ -21,7 +21,7 @@ type Meal = {
   foods: FoodItem[];
 };
 
-// Dummy data - easily replaceable with your JSON later
+// Dummy data
 const mealData: Meal[] = [
   {
     id: "1",
@@ -55,7 +55,7 @@ const mealData: Meal[] = [
   }
 ];
 
-// Helper function to calculate totals for a meal
+// Helper functions
 const calculateTotals = (foods: FoodItem[]) => {
   return foods.reduce(
     (acc, food) => ({
@@ -68,205 +68,75 @@ const calculateTotals = (foods: FoodItem[]) => {
   );
 };
 
-// Helper function to generate plate segments with minimum size
 const generatePlateSegments = (foods: FoodItem[]) => {
   const totalCalories = foods.reduce((sum, food) => sum + food.calories, 0);
-
-  // Ensure minimum segment size (15% of the plate)
   const MIN_SEGMENT_PERCENT = 15;
+  
   const adjustedSegments = foods.map(food => {
     const percent = (food.calories / totalCalories) * 100;
-    return {
-      ...food,
-      percent: Math.max(percent, MIN_SEGMENT_PERCENT)
-    };
+    return { ...food, percent: Math.max(percent, MIN_SEGMENT_PERCENT) };
   });
-
-  // Recalculate total after adjustments
+  
   const adjustedTotal = adjustedSegments.reduce((sum, seg) => sum + seg.percent, 0);
-
-  // Normalize to 360 degrees
-  return adjustedSegments.map(seg => ({
-    ...seg,
-    angle: (seg.percent / adjustedTotal) * 360
-  }));
-};
-
-// Color palette for plate segments
-const segmentColors = [
-  "#FF6B6B", // coral red
-  "#4ECDC4", // turquoise
-  "#45B7D1", // sky blue
-  "#96CEB4", // sage green
-  "#FFEAA7", // vanilla
-  "#DDA0DD", // plum
-  "#FAA275", // apricot
-  "#9B59B6", // purple
-  "#3498DB", // blue
-  "#E67E22", // orange
-];
-
-export default function MealCarousel() {
-  const navigate = useNavigate();
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const handleNext = () => {
-    if (currentSlide < mealData.length - 1) {
-      setCurrentSlide(prev => prev + 1);
-    } else {
-        setCurrentSlide(0); // Loop back to the first slide
-    }
-  };
-
-  const handleBack = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(prev => prev - 1);
-    } else {
-        setCurrentSlide(mealData.length - 1); // Loop back to the last slide
-    }
-  };
-
-  const handleContinue = () => {
-    // Navigate to shopping list page (placeholder)
-    navigate("/shopping-list");
-  };
-
-  const handleDotClick = (index: number) => {
-    setCurrentSlide(index);
-  };
-
-  const currentMeal = mealData[currentSlide];
-  const totals = calculateTotals(currentMeal.foods);
-  const plateSegments = generatePlateSegments(currentMeal.foods);
-
-  // Calculate cumulative angles for segments
+  
   let cumulativeAngle = 0;
-  const segmentsWithAngles = plateSegments.map((segment, index) => {
+  const segmentColors = [
+    "#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7",
+    "#DDA0DD", "#FAA275", "#9B59B6", "#3498DB", "#E67E22",
+  ];
+  
+  return adjustedSegments.map((segment, index) => {
+    const angle = (segment.percent / adjustedTotal) * 360;
     const startAngle = cumulativeAngle;
-    cumulativeAngle += segment.angle;
+    cumulativeAngle += angle;
     return {
-      ...segment,
+      name: segment.name,
+      angle,
       startAngle,
       color: segmentColors[index % segmentColors.length]
     };
   });
+};
+
+export default function MealCarousel() {
+  const navigate = useNavigate();
+
+  const handleContinue = () => {
+    navigate("/shopping-list");
+  };
 
   return (
     <div className={styles.page}>
       <div className={styles.wrapper}>
         <Card>
-          {/* Carousel */}
-          <div className={styles.carouselContainer}>
-            <div 
-              className={styles.slidesWrapper}
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
-              {mealData.map((meal, index) => {
-                const mealTotals = calculateTotals(meal.foods);
-                return (
-                  <div key={meal.id} className={styles.slide}>
-                    <h1 className={styles.mealTitle}>{meal.name}</h1>
-                    <div className={styles.contentGrid}>
-                      {/* Left column - Plate visualization */}
-                      <div className={styles.plateContainer}>
-                        <div className={styles.plate}>
-                          {index === currentSlide && segmentsWithAngles.map((segment, segIndex) => (
-                            <div
-                              key={segIndex}
-                              className={styles.segment}
-                              style={{
-                                transform: `rotate(${segment.startAngle}deg)`,
-                                clipPath: `polygon(50% 50%, 50% 0, 100% 0, 100% 100%, 0 100%, 0 0, 50% 0)`,
-                              }}
-                            >
-                              <div
-                                className={styles.segmentInner}
-                                style={{
-                                  ['--segment-color' as any]: segment.color,
-                                  ['--segment-angle' as any]: `${segment.angle}deg`,
-                                  transform: `rotate(${-segment.startAngle}deg)`,
-                                  background: `conic-gradient(from ${segment.startAngle}deg, ${segment.color} 0deg ${segment.angle}deg, transparent ${segment.angle}deg)`,
-                                }}
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+          <Carousel
+            showNavigation={true}
+            showDots={true}
+            showCounter={true}
+            wrapAround={true}
+          >
+            {mealData.map((meal) => {
+              const totals = calculateTotals(meal.foods);
+              const plateSegments = generatePlateSegments(meal.foods);
+              
+              return (
+                <MealSlide
+                  key={meal.id}
+                  mealName={meal.name}
+                  foods={meal.foods}
+                  plateSegments={plateSegments}
+                  totals={totals}
+                />
+              );
+            })}
+          </Carousel>
 
-                      {/* Right column - Nutrition table */}
-                      <div className={styles.nutritionCard}>
-                        <div className={styles.tableTitle}>Nutrition Facts</div>
-                        <table className={styles.nutritionTable}>
-                          <thead>
-                            <tr>
-                              <th>Food</th>
-                              <th className={styles.calories}>Cal</th>
-                              <th className={styles.protein}>P</th>
-                              <th className={styles.carbs}>C</th>
-                              <th className={styles.fat}>F</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {meal.foods.map((food) => (
-                              <tr key={food.id}>
-                                <td className={styles.foodName}>{food.name}</td>
-                                <td className={styles.calories}>{food.calories}</td>
-                                <td className={styles.protein}>{food.protein}g</td>
-                                <td className={styles.carbs}>{food.carbs}g</td>
-                                <td className={styles.fat}>{food.fat}g</td>
-                              </tr>
-                            ))}
-                            <tr className={styles.totalRow}>
-                              <td>Total</td>
-                              <td className={styles.calories}>{mealTotals.calories}</td>
-                              <td className={styles.protein}>{mealTotals.protein.toFixed(1)}g</td>
-                              <td className={styles.carbs}>{mealTotals.carbs}g</td>
-                              <td className={styles.fat}>{mealTotals.fat.toFixed(1)}g</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Progress dots */}
-          <div className={styles.progressDots}>
-            {mealData.map((_, index) => (
-              <div
-                key={index}
-                className={`${styles.dot} ${index === currentSlide ? styles.activeDot : ''}`}
-                onClick={() => handleDotClick(index)}
-                role="button"
-                tabIndex={0}
-                aria-label={`Go to ${mealData[index].name}`}
-              />
-            ))}
-          </div>
-
-          {/* Continue button */}
           <button
             className={styles.continueButton}
             onClick={handleContinue}
           >
             Continue to Shopping List
           </button>
-
-          {/* Navigation Footer */}
-          <div className={styles.navigationFooter}>
-            <NavigationFooter
-              onBack={handleBack}
-              onNext={handleNext}
-            />
-          </div>
-
-          {/* Slide indicator */}
-          <div className={styles.slideIndicator}>
-            {currentSlide + 1} / {mealData.length} • {mealData[currentSlide].name}
-          </div>
         </Card>
       </div>
     </div>
