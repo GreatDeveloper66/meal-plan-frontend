@@ -1,49 +1,37 @@
-.footer {
+.navigation {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 2rem;
+  gap: 1rem;
 }
 
-.arrowButton {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.75rem;
+.backArrow,
+.nextArrow {
+  flex: 1;
+  font-size: 1.5rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
   border: none;
-  background-color: #ffffff;
-  font-size: 1.25rem;
-  font-weight: 600;
   cursor: pointer;
-
-  box-shadow:
-    0 4px 0 rgba(0, 0, 0, 0.12),
-    0 6px 12px rgba(0, 0, 0, 0.08);
-
-  transition:
-    transform 150ms ease,
-    box-shadow 150ms ease,
-    background-color 150ms ease;
+  background-color: #e5e7eb;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15), 0 8px 12px rgba(0, 0, 0, 0.12);
+  transition: transform 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
 }
 
-.arrowButton:hover:not(.disabled) {
+.backArrow:hover:not(:disabled),
+.nextArrow:hover:not(:disabled) {
   transform: translateY(-2px);
-  background-color: #f8fafc;
-  box-shadow:
-    0 6px 0 rgba(0, 0, 0, 0.14),
-    0 10px 18px rgba(0, 0, 0, 0.12);
 }
 
-.arrowButton:active:not(.disabled) {
+.backArrow:active:not(:disabled),
+.nextArrow:active:not(:disabled) {
   transform: translateY(2px);
-  box-shadow:
-    0 2px 0 rgba(0, 0, 0, 0.16),
-    0 4px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.disabled {
-  cursor: not-allowed;
+.backArrow:disabled,
+.nextArrow:disabled {
   opacity: 0.4;
-  box-shadow:
-    0 2px 0 rgba(0, 0, 0, 0.08),
-    0 4px 6px rgba(0, 0, 0, 0.06);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
 }

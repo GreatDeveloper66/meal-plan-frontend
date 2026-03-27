@@ -4,32 +4,30 @@ type NavigationFooterProps = {
   onBack: () => void;
   onNext: () => void;
   nextDisabled?: boolean;
+  backDisabled?: boolean;
 };
 
 export default function NavigationFooter({
   onBack,
   onNext,
   nextDisabled = false,
+  backDisabled = false
 }: NavigationFooterProps) {
   return (
-    <div className={styles.footer}>
+    <div className={styles.navigation}>
       <button
-        type="button"
-        className={styles.arrowButton}
+        className={styles.backArrow}
         onClick={onBack}
-        aria-label="Go back"
+        disabled={backDisabled}
+        aria-label="Previous slide"
       >
         ←
       </button>
-
       <button
-        type="button"
-        className={`${styles.arrowButton} ${
-          nextDisabled ? styles.disabled : ""
-        }`}
+        className={styles.nextArrow}
         onClick={onNext}
         disabled={nextDisabled}
-        aria-label="Go forward"
+        aria-label="Next slide"
       >
         →
       </button>
