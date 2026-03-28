@@ -1,0 +1,225 @@
+export interface ShoppingItem {
+  id: string;
+  name: string;
+  quantity: string;
+  estimatedPrice?: number;
+  imageUrl?: string;
+  category?: string;
+  completed?: boolean;
+}
+
+// Food category emoji mapping
+const categoryEmojis: Record<string, string> = {
+  "Produce": "🥬",
+  "Dairy": "🥛",
+  "Meat": "🥩",
+  "Pantry": "🥫",
+  "Bakery": "🍞",
+  "Frozen": "❄️",
+  "Beverages": "🥤",
+  "Snacks": "🍿",
+  "Condiments": "🧂",
+  "Seafood": "🐟",
+};
+
+// Generate placeholder image URLs for food items
+const getFoodImage = (foodName: string, category: string) => {
+  const encodedName = encodeURIComponent(foodName);
+  const categoryColor = {
+    "Produce": "4CAF50",
+    "Dairy": "2196F3",
+    "Meat": "F44336",
+    "Pantry": "FF9800",
+    "Bakery": "FFC107",
+    "Frozen": "00BCD4",
+    "Beverages": "9C27B0",
+    "Snacks": "FF5722",
+    "Condiments": "795548",
+    "Seafood": "009688",
+  }[category] || "9E9E9E";
+  
+  return `https://via.placeholder.com/60x60/${categoryColor}/FFFFFF?text=${encodedName.slice(0, 3)}`;
+};
+
+export const dummyShoppingList: ShoppingItem[] = [
+  {
+    id: "item_1",
+    name: "Organic Avocados",
+    quantity: "3 pieces",
+    estimatedPrice: 5.97,
+    imageUrl: getFoodImage("Avocado", "Produce"),
+    category: "Produce",
+    completed: false,
+  },
+  {
+    id: "item_2",
+    name: "Free Range Eggs",
+    quantity: "1 dozen",
+    estimatedPrice: 6.49,
+    imageUrl: getFoodImage("Eggs", "Dairy"),
+    category: "Dairy",
+    completed: false,
+  },
+  {
+    id: "item_3",
+    name: "Whole Grain Bread",
+    quantity: "1 loaf",
+    estimatedPrice: 4.29,
+    imageUrl: getFoodImage("Bread", "Bakery"),
+    category: "Bakery",
+    completed: false,
+  },
+  {
+    id: "item_4",
+    name: "Boneless Chicken Breast",
+    quantity: "2 lbs",
+    estimatedPrice: 11.98,
+    imageUrl: getFoodImage("Chicken", "Meat"),
+    category: "Meat",
+    completed: false,
+  },
+  {
+    id: "item_5",
+    name: "Quinoa",
+    quantity: "1 lb",
+    estimatedPrice: 4.99,
+    imageUrl: getFoodImage("Quinoa", "Pantry"),
+    category: "Pantry",
+    completed: false,
+  },
+  {
+    id: "item_6",
+    name: "Almond Milk",
+    quantity: "1/2 gallon",
+    estimatedPrice: 3.99,
+    imageUrl: getFoodImage("Almond Milk", "Dairy"),
+    category: "Dairy",
+    completed: false,
+  },
+  {
+    id: "item_7",
+    name: "Fresh Salmon Fillet",
+    quantity: "1.5 lbs",
+    estimatedPrice: 18.97,
+    imageUrl: getFoodImage("Salmon", "Seafood"),
+    category: "Seafood",
+    completed: false,
+  },
+  {
+    id: "item_8",
+    name: "Broccoli",
+    quantity: "1 bunch",
+    estimatedPrice: 2.49,
+    imageUrl: getFoodImage("Broccoli", "Produce"),
+    category: "Produce",
+    completed: false,
+  },
+  {
+    id: "item_9",
+    name: "Greek Yogurt",
+    quantity: "32 oz",
+    estimatedPrice: 5.49,
+    imageUrl: getFoodImage("Yogurt", "Dairy"),
+    category: "Dairy",
+    completed: false,
+  },
+  {
+    id: "item_10",
+    name: "Extra Virgin Olive Oil",
+    quantity: "16.9 fl oz",
+    estimatedPrice: 12.99,
+    imageUrl: getFoodImage("Olive Oil", "Pantry"),
+    category: "Pantry",
+    completed: false,
+  },
+  {
+    id: "item_11",
+    name: "Fresh Strawberries",
+    quantity: "1 lb",
+    estimatedPrice: 4.99,
+    imageUrl: getFoodImage("Strawberries", "Produce"),
+    category: "Produce",
+    completed: true, // Example completed item
+  },
+  {
+    id: "item_12",
+    name: "Dark Chocolate",
+    quantity: "3.5 oz",
+    estimatedPrice: 3.49,
+    imageUrl: getFoodImage("Chocolate", "Snacks"),
+    category: "Snacks",
+    completed: false,
+  },
+  {
+    id: "item_13",
+    name: "Sparkling Water",
+    quantity: "8 pack",
+    estimatedPrice: 6.99,
+    imageUrl: getFoodImage("Water", "Beverages"),
+    category: "Beverages",
+    completed: false,
+  },
+  {
+    id: "item_14",
+    name: "Frozen Mixed Berries",
+    quantity: "16 oz",
+    estimatedPrice: 5.99,
+    imageUrl: getFoodImage("Berries", "Frozen"),
+    category: "Frozen",
+    completed: false,
+  },
+  {
+    id: "item_15",
+    name: "Organic Pasta",
+    quantity: "16 oz",
+    estimatedPrice: 2.49,
+    imageUrl: getFoodImage("Pasta", "Pantry"),
+    category: "Pantry",
+    completed: false,
+  },
+  {
+    id: "item_16",
+    name: "Marinara Sauce",
+    quantity: "24 oz",
+    estimatedPrice: 3.99,
+    imageUrl: getFoodImage("Sauce", "Pantry"),
+    category: "Pantry",
+    completed: false,
+  },
+  {
+    id: "item_17",
+    name: "Parmesan Cheese",
+    quantity: "8 oz",
+    estimatedPrice: 5.99,
+    imageUrl: getFoodImage("Cheese", "Dairy"),
+    category: "Dairy",
+    completed: false,
+  },
+  {
+    id: "item_18",
+    name: "Fresh Basil",
+    quantity: "1 bunch",
+    estimatedPrice: 2.29,
+    imageUrl: getFoodImage("Basil", "Produce"),
+    category: "Produce",
+    completed: false,
+  },
+  {
+    id: "item_19",
+    name: "Garlic",
+    quantity: "1 head",
+    estimatedPrice: 0.79,
+    imageUrl: getFoodImage("Garlic", "Produce"),
+    category: "Produce",
+    completed: false,
+  },
+  {
+    id: "item_20",
+    name: "Lemon",
+    quantity: "2 pieces",
+    estimatedPrice: 1.58,
+    imageUrl: getFoodImage("Lemon", "Produce"),
+    category: "Produce",
+    completed: false,
+  }
+];
