@@ -1,0 +1,63 @@
+.indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.open .dot {
+  background-color: #22c55e;
+  box-shadow: 0 0 0 2px #dcfce7;
+}
+
+.closing-soon .dot {
+  background-color: #f59e0b;
+  box-shadow: 0 0 0 2px #fef3c7;
+  animation: pulse 1.5s infinite;
+}
+
+.closed .dot {
+  background-color: #ef4444;
+  box-shadow: 0 0 0 2px #fee2e2;
+}
+
+.opens-soon .dot {
+  background-color: #3b82f6;
+  box-shadow: 0 0 0 2px #dbeafe;
+}
+
+.message {
+  color: #334155;
+}
+
+.open .message {
+  color: #15803d;
+}
+
+.closing-soon .message {
+  color: #b45309;
+}
+
+.closed .message {
+  color: #dc2626;
+}
+
+.opens-soon .message {
+  color: #2563eb;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
