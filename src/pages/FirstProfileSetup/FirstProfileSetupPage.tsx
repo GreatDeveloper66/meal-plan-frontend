@@ -4,20 +4,7 @@ import styles from "./FirstProfileSetupPage.module.css";
 import Input from "../../components/ui/Input/Input";
 import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
 import Card from "../../components/ui/Card/Card";
-
-type FormState = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-};
-
-type ValidationState = {
-  firstName: boolean;
-  lastName: boolean;
-  email: boolean;
-  phone: boolean;
-};
+import { FormState, ValidationState } from "../../data_types/data_types";
 
 const initialForm: FormState = {
   firstName: "",
