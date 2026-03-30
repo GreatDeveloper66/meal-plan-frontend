@@ -3,24 +3,31 @@ import { useNavigate } from "react-router-dom";
 import Card from "../../components/ui/Card/Card";
 import Input from "../../components/ui/Input/Input";
 import styles from "./LoginScreenPage.module.css";
+import { loginFormState, loginFormValidationState } from "../../data_types/data_types";
+
+const initialFormState: loginFormState = {
+  email: "",
+  password: "",
+  rememberMe: false,
+};
 
 export default function LoginScreenPage() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [initialForm, setInitialForm] = useState<loginFormState>(initialFormState);
 
-  const emailIsValid = /^\S+@\S+\.\S+$/.test(email);
-  const passwordIsValid = password.length >= 6;
+  const validation: loginFormValidationState = {
+    email: /^\S+@\S+\.\S+$/.test(initialForm.email),
+    password: initialForm.password.length >= 6,
+  };
 
-  const formIsValid = emailIsValid && passwordIsValid;
+  const formIsValid = validation.email && validation.password;
 
   const handleLogin = () => {
     if (!formIsValid) return;
 
     // 🔹 Placeholder for auth API call
-    console.log("Logging in with:", { email, password, rememberMe });
+    console.log("Logging in with:", { email: initialForm.email, password: initialForm.password, rememberMe: initialForm.rememberMe });
 
     navigate("/hub");
   };
@@ -34,17 +41,17 @@ export default function LoginScreenPage() {
           <Input
             label="Email Address"
             type="email"
-            value={email}
-            onChange={setEmail}
-            isValid={emailIsValid}
+            value={initialForm.email}
+            onChange={(email) => setInitialForm({ ...initialForm, email })}
+            isValid={validation.email}
           />
 
           <Input
             label="Password"
             type="password"
-            value={password}
-            onChange={setPassword}
-            isValid={passwordIsValid}
+            value={initialForm.password}
+            onChange={(password) => setInitialForm({ ...initialForm, password })}
+            isValid={validation.password}
           />
         </div>
 
@@ -71,8 +78,8 @@ export default function LoginScreenPage() {
           <label className={styles.rememberMe}>
             <input
               type="checkbox"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
+              checked={initialForm.rememberMe}
+              onChange={(e) => setInitialForm({ ...initialForm, rememberMe: e.target.checked })}
             />
             Remember Me
           </label>
