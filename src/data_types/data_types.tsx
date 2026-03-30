@@ -114,34 +114,56 @@ export type ValidationStateForFourthProfileForm = {
   heightUnit: boolean;
 };
 
-// placeId: place.id,
-//                 name: place.displayName?.text || place.name,
-//                 displayName: place.displayName,
-//                 latitude: place.location?.latitude,
-//                 longitude: place.location?.longitude,
-//                 types: place.types,
-//                 formattedAddress: place.formattedAddress,
-//                 businessStatus: place.businessStatus,
-//                 regularOpeningHours: place.regularOpeningHours,
-//                 currentOpeningHours: place.currentOpeningHours,
-//                 rating: place.rating,
-//                 userRatingCount: place.userRatingCount,
-//                 // Include the processed photos with URLs
-//                 photos: photos,
-//                 // Also include count of available photos
-//                 photoCount: photos.length,
-//                 priceLevel: place.priceLevel,
-//                 phoneNumber: place.internationalPhoneNumber,
-//                 website: place.websiteUri,
-//                 // Computed hours status
-//                 hoursStatus: {
-//                     isOpen: hoursStatus.isOpen,
-//                     message: hoursStatus.message,
-//                     hoursUntilClose: hoursStatus.hoursUntilClose,
-//                     hoursUntilOpen: hoursStatus.hoursUntilOpen,
-//                     nextCloseTime: hoursStatus.nextCloseTime,
-//                     nextOpenTime: hoursStatus.nextOpenTime
-//                 },
-//                 distanceFromCurrentLocation: distanceFromCurrentLocation
-//             };
+export type loginFormState = {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+};
 
+export type loginFormValidationState = {
+  email: boolean;
+  password: boolean;
+};
+
+export type registrationFormState = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phone: string;
+};
+
+export type updateProfileFormState = {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  phone?: string;
+};
+
+export type authenticationToken = {
+  token: string;
+  expiresIn: number;
+}
+
+export type locationAndRadiusFormState = {
+  latitude: number;
+  longitude: number;
+  radius: number;
+}
+
+export type locationAndRadiusValidationState = {
+  latitude: boolean;
+  longitude: boolean;
+  radius: boolean;
+}
+
+export type dietaryProfile = {
+  age: number;
+  sex: "male" | "female" | "other";
+  weight: number;
+  height: number;
+  activityLevel: "sedentary" | "light" | "moderate" | "active" | "very active";
+  dietaryPreferences: string[];
+  budgetLevel: "low" | "normal" | "high";
+}
