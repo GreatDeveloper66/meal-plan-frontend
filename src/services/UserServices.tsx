@@ -22,7 +22,10 @@ export async function registerUser(userData: registrationFormState): Promise<any
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
     });
-    return await response.json();
+    const data = await response.json();
+    const token = data.token; // Assuming the token is returned in the response
+    localStorage.setItem("authToken", token); // Store the token in local storage
+    return data;
   } catch (error) {
     console.error("Error registering user:", error);
     throw error;
@@ -37,7 +40,11 @@ export async function loginUser(credentials: loginFormState): Promise<any> {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials),
     });
-    return await response.json();
+    // when data is returned, store the token in local storage
+    const data = await response.json();
+    const token = data.token;
+    localStorage.setItem("authToken", token);
+    return data;
   } catch (error) {
     console.error("Error logging in user:", error);
     throw error;
@@ -51,7 +58,9 @@ export async function logoutUser(authToken: authenticationToken): Promise<any> {
       method: "POST",
       headers: { "Authorization": `Bearer ${authToken.token}` }
     });
-    return await response.json();
+    const data = await response.json();
+    localStorage.removeItem("authToken"); // Remove the token from local storage
+    return data;
   } catch (error) {
     console.error("Error logging out user:", error);
     throw error;
