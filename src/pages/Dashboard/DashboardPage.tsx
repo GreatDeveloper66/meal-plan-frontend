@@ -3,16 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Card from "../../components/ui/Card/Card";
 import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
 import styles from "./DashboardPage.module.css";
-
-type MealItem = {
-  food: string;
-  quantity: string;
-};
-
-type MealPlan = {
-  meal: "Breakfast" | "Lunch" | "Dinner";
-  items: MealItem[];
-};
+import { MealPlan } from "../../data_types/data_types";
 
 export default function DashboardPage() {
   const navigate = useNavigate();
