@@ -3,23 +3,7 @@ import styles from "./MealCarousel.module.css";
 import Card from "../../components/ui/Card/Card";
 import Carousel from "../../components/ui/Carousel/Carousel";
 import MealSlide from "../../components/ui/Slides/MealSlide/MealSlide";
-
-// Types and helper functions
-type FoodItem = {
-  id: string;
-  name: string;
-  calories: number;
-  protein: number;
-  carbs: number;
-  fat: number;
-  quantity?: string;
-};
-
-type Meal = {
-  id: string;
-  name: "breakfast" | "lunch" | "dinner";
-  foods: FoodItem[];
-};
+import { Meal, FoodItem } from "../../data_types/data_types";
 
 // Dummy data
 const mealData: Meal[] = [
