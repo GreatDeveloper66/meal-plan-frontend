@@ -3,12 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Card from "../../components/ui/Card/Card";
 import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
 import styles from "./GroceriesPage.module.css";
-
-type GroceryItem = {
-  food: string;
-  store: string;
-  price: string;
-};
+import { GroceryItem } from "../../data_types/data_types";
 
 export default function GroceriesPage() {
   const navigate = useNavigate();
