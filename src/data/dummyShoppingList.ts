@@ -1,12 +1,4 @@
-export interface ShoppingItem {
-  id: string;
-  name: string;
-  quantity: string;
-  estimatedPrice?: number;
-  imageUrl?: string;
-  category?: string;
-  completed?: boolean;
-}
+import { ShoppingItem } from "../data_types/data_types";
 
 // Food category emoji mapping
 const categoryEmojis: Record<string, string> = {
