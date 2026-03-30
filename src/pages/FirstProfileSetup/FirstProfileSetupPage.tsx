@@ -4,9 +4,9 @@ import styles from "./FirstProfileSetupPage.module.css";
 import Input from "../../components/ui/Input/Input";
 import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
 import Card from "../../components/ui/Card/Card";
-import { FormState, ValidationState } from "../../data_types/data_types";
+import { FormStateForFirstUserForm, ValidationStateForFirstUserForm } from "../../data_types/data_types";
 
-const initialForm: FormState = {
+const initialForm: FormStateForFirstUserForm = {
   firstName: "",
   lastName: "",
   email: "",
@@ -15,9 +15,9 @@ const initialForm: FormState = {
 
 export default function FirstProfileSetupPage() {
   const navigate = useNavigate();
-  const [form, setForm] = useState<FormState>(initialForm);
+  const [form, setForm] = useState<FormStateForFirstUserForm>(initialForm);
 
-  const validation: ValidationState = {
+  const validation: ValidationStateForFirstUserForm = {
     firstName: form.firstName.trim().length > 0,
     lastName: form.lastName.trim().length > 0,
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email),
@@ -26,7 +26,7 @@ export default function FirstProfileSetupPage() {
 
   const allValid = Object.values(validation).every(Boolean);
 
-  const handleChange = (field: keyof FormState, value: string) => {
+  const handleChange = (field: keyof FormStateForFirstUserForm, value: string) => {
     setForm((prev) => ({
       ...prev,
       [field]: value,
@@ -37,7 +37,8 @@ export default function FirstProfileSetupPage() {
     if (!allValid) return;
 
     // 🔒 Placeholder for future backend validation
-    // TODO: Call user auth service to check for duplicate accounts
+    // TODO: Call user auth service to check for duplicate accounts and save user data in a central location (e.g. context or global state) for use in future steps
+
 
     navigate("/second-profile-setup");
   };

@@ -4,18 +4,28 @@ import Card from "../../components/ui/Card/Card";
 import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
 import styles from "./SecondEditPage.module.css";
 import SelectInput from "../../components/ui/SelectInput/SelectInput";
+import { FormStateForThirdProfileForm, ValidationStateForThirdProfileForm } from "../../data_types/data_types";
+
+const initialForm: FormStateForThirdProfileForm = {
+  activityFactor: "",
+  dietType: "",
+  budgetLevel: "",
+};
 
 export default function SecondEditPage() {
   const navigate = useNavigate();
 
- const [activityFactor, setActivityFactor] = useState("");
-  const [dietType, setDietType] = useState("");
-  const [budgetLevel, setBudgetLevel] = useState("");
-  const allValid = activityFactor.length > 0 && dietType.length > 0 && budgetLevel.length > 0;
+  const [form, setForm] = useState<FormStateForThirdProfileForm>(initialForm);
+
+  const validation: ValidationStateForThirdProfileForm = {
+    activityFactor: form.activityFactor.length > 0,
+    dietType: form.dietType.length > 0,
+    budgetLevel: form.budgetLevel.length > 0,
+  };
 
   const handleSave = () => {
     // 🔹 Placeholder: save preference details
-    console.log({ activityFactor, dietType, budgetLevel });
+    // console.log({ activityFactor, dietType, budgetLevel });
 
     navigate("/hub");
   };
@@ -33,9 +43,9 @@ export default function SecondEditPage() {
        <div className={styles.fields}>
           <SelectInput
             label="Activity Factor"
-            value={activityFactor}
-            onChange={setActivityFactor}
-            isValid={activityFactor.length > 0}
+            value={form.activityFactor}
+            onChange={(value) => setForm({ ...form, activityFactor: value })}
+            isValid={validation.activityFactor}
             options={[
               { label: "Sedentary", value: "sedentary" },
               { label: "Lightly Active", value: "lightly_active" },
@@ -47,9 +57,9 @@ export default function SecondEditPage() {
 
           <SelectInput
             label="Diet Type"
-            value={dietType}
-            onChange={setDietType}
-            isValid={dietType.length > 0}
+            value={form.dietType}
+            onChange={(value) => setForm({ ...form, dietType: value })}
+            isValid={validation.dietType}
             options={[
               { label: "Normal", value: "normal" },
               { label: "Keto", value: "keto" },
@@ -61,9 +71,9 @@ export default function SecondEditPage() {
 
           <SelectInput
             label="Budget Level"
-            value={budgetLevel}
-            onChange={setBudgetLevel}
-            isValid={budgetLevel.length > 0}
+            value={form.budgetLevel}
+            onChange={(value) => setForm({ ...form, budgetLevel: value })}
+            isValid={validation.budgetLevel}
             options={[
               { label: "Minimal", value: "minimal" },
               { label: "Normal", value: "normal" },
@@ -78,7 +88,7 @@ export default function SecondEditPage() {
           </button>
           <button
             className={styles.primaryButton}
-            disabled={!allValid}
+            disabled={!Object.values(validation).every(Boolean)}
             onClick={handleSave}
           >
             Save

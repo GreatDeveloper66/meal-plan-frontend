@@ -5,18 +5,22 @@ import Input from "../../components/ui/Input/Input";
 import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
 import Card from "../../components/ui/Card/Card";
 import styles from "./SecondProfileSetupPage.module.css";
+import { FormStateForSecondUserForm, ValidationStateForSecondUserForm } from "../../data_types/data_types";
+
+const initialForm: FormStateForSecondUserForm = {
+  password: "",
+  confirmPassword: "",
+};
 
 export default function SecondProfileSetupPage() {
   const navigate = useNavigate();
 
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [form, setForm] = useState<FormStateForSecondUserForm>(initialForm);
 
-  const isPasswordValid = password.length >= 8;
-  const isConfirmPasswordValid =
-    confirmPassword.length > 0 && confirmPassword === password;
-
-  const isFormValid = isPasswordValid && isConfirmPasswordValid;
+  const validation: ValidationStateForSecondUserForm = {
+    password: form.password.length >= 8,
+    confirmPassword: form.confirmPassword === form.password && form.confirmPassword.length > 0,
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -27,17 +31,17 @@ export default function SecondProfileSetupPage() {
           <Input
             label="Password"
             type="password"
-            value={password}
-            onChange={setPassword}
-            isValid={isPasswordValid}
+            value={form.password}
+            onChange={(v) => setForm((prev) => ({ ...prev, password: v }))}
+            isValid={validation.password}
           />
 
           <Input
             label="Confirm Password"
             type="password"
-            value={confirmPassword}
-            onChange={setConfirmPassword}
-            isValid={isConfirmPasswordValid}
+            value={form.confirmPassword}
+            onChange={(v) => setForm((prev) => ({ ...prev, confirmPassword: v }))}
+            isValid={validation.confirmPassword}
           />
         </div>
 
@@ -47,7 +51,7 @@ export default function SecondProfileSetupPage() {
             // TODO: hook into auth service
             navigate("/third-profile-setup");
           }}
-          nextDisabled={!isFormValid}
+          nextDisabled={!Object.values(validation).every(Boolean)}
         />
         </Card>
       </form>

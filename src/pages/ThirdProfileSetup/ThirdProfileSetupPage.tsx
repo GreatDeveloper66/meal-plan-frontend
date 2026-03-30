@@ -5,18 +5,25 @@ import SelectInput from "../../components/ui/SelectInput/SelectInput";
 import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
 import Card from "../../components/ui/Card/Card";
 import styles from "./ThirdProfileSetupPage.module.css";
+import { FormStateForThirdProfileForm, ValidationStateForThirdProfileForm } from "../../data_types/data_types";
+
+const initialForm: FormStateForThirdProfileForm = {
+  activityFactor: "",
+  dietType: "",
+  budgetLevel: "",
+};
+
 
 export default function ThirdProfileSetupPage() {
   const navigate = useNavigate();
 
-  const [activityFactor, setActivityFactor] = useState("");
-  const [dietType, setDietType] = useState("");
-  const [budgetLevel, setBudgetLevel] = useState("");
+  const [form, setForm] = useState<FormStateForThirdProfileForm>(initialForm);
 
-  const isFormValid =
-    activityFactor.length > 0 &&
-    dietType.length > 0 &&
-    budgetLevel.length > 0;
+  const validation: ValidationStateForThirdProfileForm = {
+    activityFactor: form.activityFactor.length > 0,
+    dietType: form.dietType.length > 0,
+    budgetLevel: form.budgetLevel.length > 0,
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -26,9 +33,9 @@ export default function ThirdProfileSetupPage() {
         <div className={styles.fields}>
           <SelectInput
             label="Activity Factor"
-            value={activityFactor}
-            onChange={setActivityFactor}
-            isValid={activityFactor.length > 0}
+            value={form.activityFactor}
+            onChange={(v) => setForm((prev) => ({ ...prev, activityFactor: v }))}
+            isValid={validation.activityFactor}
             options={[
               { label: "Sedentary", value: "sedentary" },
               { label: "Lightly Active", value: "lightly_active" },
@@ -40,9 +47,9 @@ export default function ThirdProfileSetupPage() {
 
           <SelectInput
             label="Diet Type"
-            value={dietType}
-            onChange={setDietType}
-            isValid={dietType.length > 0}
+            value={form.dietType}
+            onChange={(v) => setForm((prev) => ({ ...prev, dietType: v }))}
+            isValid={validation.dietType}
             options={[
               { label: "Normal", value: "normal" },
               { label: "Keto", value: "keto" },
@@ -54,9 +61,9 @@ export default function ThirdProfileSetupPage() {
 
           <SelectInput
             label="Budget Level"
-            value={budgetLevel}
-            onChange={setBudgetLevel}
-            isValid={budgetLevel.length > 0}
+            value={form.budgetLevel}
+            onChange={(v) => setForm((prev) => ({ ...prev, budgetLevel: v }))}
+            isValid={validation.budgetLevel}
             options={[
               { label: "Minimal", value: "minimal" },
               { label: "Normal", value: "normal" },
@@ -71,7 +78,7 @@ export default function ThirdProfileSetupPage() {
             // TODO: persist preferences + continue flow
             navigate("/fourth-profile-setup");
           }}
-          nextDisabled={!isFormValid}
+          nextDisabled={!Object.values(validation).every(Boolean)}
         />
         </Card>
       </form>

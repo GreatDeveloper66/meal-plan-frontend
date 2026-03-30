@@ -15,13 +15,13 @@ type MealItem = {
 export type MealPlan = {
   meal: "Breakfast" | "Lunch" | "Dinner";
   items: MealItem[];
-};export type FormState = {
+};export type FormStateForFirstUserForm = {
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
 };
-export type ValidationState = {
+export type ValidationStateForFirstUserForm = {
   firstName: boolean;
   lastName: boolean;
   email: boolean;
@@ -76,6 +76,43 @@ export type places = {
     };
     distanceFromCurrentLocation?: number;
 }
+
+export type FormStateForSecondUserForm = {
+  password: string;
+  confirmPassword: string;
+};
+export type ValidationStateForSecondUserForm = {
+  password: boolean;
+  confirmPassword: boolean;
+};
+
+export type FormStateForThirdProfileForm = {
+  activityFactor: string;
+  dietType: string;
+  budgetLevel: string;
+};
+export type ValidationStateForThirdProfileForm = {
+  activityFactor: boolean;
+  dietType: boolean;
+  budgetLevel: boolean;
+};
+
+export type FormStateForFourthProfileForm = {
+  age: string;
+  sex: string;
+  weight: string;
+  weightUnit: "lb" | "kg";
+  height: string;
+  heightUnit: "cm" | "in";
+};
+export type ValidationStateForFourthProfileForm = {
+  age: boolean;
+  sex: boolean;
+  weight: boolean;
+  height: boolean;
+  weightUnit: boolean;
+  heightUnit: boolean;
+};
 
 // placeId: place.id,
 //                 name: place.displayName?.text || place.name,
