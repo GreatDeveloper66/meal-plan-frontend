@@ -13,7 +13,7 @@ const UPDATE_DIET_PROFILE_URL = `${API_BASE_URL}/update-nutritional-profile`;
 const DELETE_DIET_PROFILE_URL = `${API_BASE_URL}/delete-nutritional-profile`;
 
 // Function to create a new diet profile
-export async function createDietProfile(profileData: dietaryProfile, authToken: authenticationToken) {
+export async function createDietProfile(profileData: dietaryProfile, authToken: authenticationToken): Promise<any> {
   try {
     const response = await fetch(CREATE_DIET_PROFILE_URL, {
       method: "POST",
@@ -31,7 +31,7 @@ export async function createDietProfile(profileData: dietaryProfile, authToken: 
 }
 
 // Function to get a diet profile
-export async function getDietProfile(authToken: authenticationToken) {
+export async function getDietProfile(authToken: authenticationToken): Promise<any> {
   try {
     const response = await fetch(GET_DIET_PROFILE_URL, {
       method: "GET",
@@ -45,7 +45,7 @@ export async function getDietProfile(authToken: authenticationToken) {
 }
 
 // Function to update a diet profile
-export async function updateDietProfile(profileData: dietaryProfile, authToken: authenticationToken) {
+export async function updateDietProfile(profileData: dietaryProfile, authToken: authenticationToken): Promise<any> {
   try {
     const response = await fetch(UPDATE_DIET_PROFILE_URL, {
       method: "PUT",
@@ -63,7 +63,7 @@ export async function updateDietProfile(profileData: dietaryProfile, authToken: 
 }
 
 // Function to delete a diet profile
-export async function deleteDietProfile(authToken: authenticationToken) {
+export async function deleteDietProfile(authToken: authenticationToken): Promise<any> {
   try {
     const response = await fetch(DELETE_DIET_PROFILE_URL, {
       method: "DELETE",

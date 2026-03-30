@@ -7,7 +7,7 @@ const API_BASE_URL =  process.env.GROCERY_SERVICES_URL
 const GET_GROCERY_STORES_URL = `${API_BASE_URL}/find-grocery-markets-within-radius`;
 
 // Function to get grocery stores within a radius
-export async function getGroceryStores(locationData: locationAndRadiusFormState) {
+export async function getGroceryStores(locationData: locationAndRadiusFormState): Promise<any> {
   try {
     const response = await fetch(GET_GROCERY_STORES_URL, {
       method: "POST",

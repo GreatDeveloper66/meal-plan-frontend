@@ -15,7 +15,7 @@ const DELETE_URL = `${API_BASE_URL}/delete-user`;
 
 
 // Function to register a new user
-export async function registerUser(userData: registrationFormState) {
+export async function registerUser(userData: registrationFormState): Promise<any> {
   try {
     const response = await fetch(REGISTER_URL, {
       method: "POST",
@@ -30,7 +30,7 @@ export async function registerUser(userData: registrationFormState) {
 }
 
 // Function to log in a user
-export async function loginUser(credentials: loginFormState) {
+export async function loginUser(credentials: loginFormState): Promise<any> {
   try {
     const response = await fetch(LOGIN_URL, {
         method: "POST",
@@ -45,7 +45,7 @@ export async function loginUser(credentials: loginFormState) {
 }
 
 // Function to log out a user
-export async function logoutUser(authToken: authenticationToken) {
+export async function logoutUser(authToken: authenticationToken): Promise<any> {
   try {
     const response = await fetch(LOGOUT_URL, {
       method: "POST",
@@ -59,7 +59,7 @@ export async function logoutUser(authToken: authenticationToken) {
 }
 
 // Function to update user profile
-export async function updateUserProfile(userData: updateProfileFormState, authToken: authenticationToken) {
+export async function updateUserProfile(userData: updateProfileFormState, authToken: authenticationToken): Promise<any> {
   try {
     const response = await fetch(UPDATE_URL, {
       method: "PUT",
@@ -77,7 +77,8 @@ export async function updateUserProfile(userData: updateProfileFormState, authTo
 }
 
 // Function to delete a user
-export async function deleteUser(authToken: authenticationToken) {  try {
+export async function deleteUser(authToken: authenticationToken): Promise<any> {
+  try {
     const response = await fetch(DELETE_URL, {
       method: "DELETE",
       headers: { "Authorization": `Bearer ${authToken.token}` }
