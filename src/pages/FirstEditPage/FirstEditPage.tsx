@@ -6,6 +6,8 @@ import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFoo
 import styles from "./FirstEditPage.module.css";
 import SelectInput from "../../components/ui/SelectInput/SelectInput";
 import { FormStateForFourthProfileForm, ValidationStateForFourthProfileForm } from "../../data_types/data_types";
+import { AppContext } from "../../AppContext/AppContext";
+import { useContext } from "react";
 
 const initialForm: FormStateForFourthProfileForm = {
   age: "",
@@ -19,6 +21,7 @@ const initialForm: FormStateForFourthProfileForm = {
 export default function FirstEditPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState<FormStateForFourthProfileForm>(initialForm);
+  const appContext = useContext(AppContext);
 
   const validation: ValidationStateForFourthProfileForm = {
     age: Number(form.age) >= 13 && Number(form.age) <= 120,
@@ -32,7 +35,8 @@ export default function FirstEditPage() {
 
   const handleSave = () => {
     // 🔹 Placeholder: save personal details
-
+    appContext.setFourthProfileFormState(form);
+    appContext.updateDietProfile();
 
     navigate("/second-edit-page");
   };
