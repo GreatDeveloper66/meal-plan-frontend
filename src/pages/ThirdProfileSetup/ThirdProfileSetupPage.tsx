@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../AppContext/AppContext";
 
 import SelectInput from "../../components/ui/SelectInput/SelectInput";
 import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
@@ -16,6 +17,8 @@ const initialForm: FormStateForThirdProfileForm = {
 
 export default function ThirdProfileSetupPage() {
   const navigate = useNavigate();
+  const appContext = useContext(AppContext);
+
 
   const [form, setForm] = useState<FormStateForThirdProfileForm>(initialForm);
 
@@ -76,6 +79,7 @@ export default function ThirdProfileSetupPage() {
           onBack={() => navigate("/second-profile-setup")}
           onNext={() => {
             // TODO: persist preferences + continue flow
+            appContext.setThirdProfileFormState(form);
             navigate("/fourth-profile-setup");
           }}
           nextDisabled={!Object.values(validation).every(Boolean)}
