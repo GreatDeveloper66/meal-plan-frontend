@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./FirstProfileSetupPage.module.css";
 import Input from "../../components/ui/Input/Input";
 import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
 import Card from "../../components/ui/Card/Card";
 import { FormStateForFirstUserForm, ValidationStateForFirstUserForm } from "../../data_types/data_types";
+import { AppContext } from "../../AppContext/AppContext";
 
 const initialForm: FormStateForFirstUserForm = {
   firstName: "",
@@ -15,6 +16,7 @@ const initialForm: FormStateForFirstUserForm = {
 
 export default function FirstProfileSetupPage() {
   const navigate = useNavigate();
+  const appContext = useContext(AppContext);
   const [form, setForm] = useState<FormStateForFirstUserForm>(initialForm);
 
   const validation: ValidationStateForFirstUserForm = {
@@ -38,8 +40,8 @@ export default function FirstProfileSetupPage() {
 
     // 🔒 Placeholder for future backend validation
     // TODO: Call user auth service to check for duplicate accounts and save user data in a central location (e.g. context or global state) for use in future steps
-
-
+    //here we will take the data from the form and save it in context, then navigate to the next page
+    appContext.setFirstUserFormState(form);
     navigate("/second-profile-setup");
   };
 
