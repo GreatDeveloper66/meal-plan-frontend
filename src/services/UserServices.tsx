@@ -98,3 +98,16 @@ export async function deleteUser(authToken: authenticationToken): Promise<any> {
     throw error;
   }
 }
+
+//get user data function that takes in an auth token and returns the user data
+export async function getUserData(authToken: authenticationToken): Promise<any> {
+  try {    const response = await fetch(`${API_BASE_URL}/user-data`, {
+      method: "GET",
+      headers: { "Authorization": `Bearer ${authToken.token}` }
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("Error getting user data:", error);
+    throw error;
+  }
+}
