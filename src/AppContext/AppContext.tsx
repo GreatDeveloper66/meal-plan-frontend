@@ -9,6 +9,7 @@ import {
   updateUserProfile,
   getUserData,
   deleteUser,
+  logoutUser,
 } from "../services/UserServices";
 import {
   createDietProfile,
@@ -84,8 +85,15 @@ export const AppContext = createContext({
     return data;
   },
   logoutUser: () => {
+    logoutUser((AppContext as any).authenticationToken);
+    (AppContext as any).firstUserFormState = {} as FormStateForFirstUserForm;
+    (AppContext as any).secondUserFormState ={} as FormStateForSecondUserForm;
+    (AppContext as any).thirdProfileFormState = {} as FormStateForThirdProfileForm;
+    (AppContext as any).fourthProfileFormState = {} as FormStateForFourthProfileForm;
+    (AppContext as any).loginFormState = {} as loginFormState;
+    (AppContext as any).updateProfileFormState = {} as updateProfileFormState;
     (AppContext as any).authenticationToken = {} as authenticationToken;
-    localStorage.removeItem("authToken");
+    
   },
   updateUser: async () => {
     const data = await updateUserProfile(
