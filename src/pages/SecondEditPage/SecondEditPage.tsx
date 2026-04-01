@@ -5,7 +5,8 @@ import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFoo
 import styles from "./SecondEditPage.module.css";
 import SelectInput from "../../components/ui/SelectInput/SelectInput";
 import { FormStateForThirdProfileForm, ValidationStateForThirdProfileForm } from "../../data_types/data_types";
-
+import { AppContext } from "../../AppContext/AppContext";
+import { useContext } from "react";
 const initialForm: FormStateForThirdProfileForm = {
   activityFactor: "",
   dietType: "",
@@ -16,6 +17,7 @@ export default function SecondEditPage() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState<FormStateForThirdProfileForm>(initialForm);
+  const appContext = useContext(AppContext);
 
   const validation: ValidationStateForThirdProfileForm = {
     activityFactor: form.activityFactor.length > 0,
@@ -26,7 +28,8 @@ export default function SecondEditPage() {
   const handleSave = () => {
     // 🔹 Placeholder: save preference details
     // console.log({ activityFactor, dietType, budgetLevel });
-
+    appContext.setThirdProfileFormState(form);
+    appContext.updateDietProfile();
     navigate("/hub");
   };
 
