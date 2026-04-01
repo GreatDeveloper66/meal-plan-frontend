@@ -158,7 +158,7 @@ export type locationAndRadiusValidationState = {
   radius: boolean;
 }
 
-export type dietaryProfile = {
+export type DietaryProfile = {
   age: number;
   sex: "male" | "female" | "other";
   weight: number;
