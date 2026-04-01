@@ -1,19 +1,18 @@
 //create a file of diet profile services to handle all the api calls related to diet profile
 // including
-import { dietaryProfile, authenticationToken } from "../data_types/data_types";
-import dotenv from "dotenv";
-dotenv.config();
+import { DietaryProfile, authenticationToken } from "../data_types/data_types";
+
 
 
 // import diet profile services url and create urls for get, create, update and delete diet profile
-const API_BASE_URL =  process.env.DIET_PROFILE_SERVICES_URL
+const API_BASE_URL =  process.env.REACT_APP_DIET_PROFILE_SERVICES_URL
 const CREATE_DIET_PROFILE_URL = `${API_BASE_URL}/create-nutritional-profile`;
 const GET_DIET_PROFILE_URL = `${API_BASE_URL}/get-nutritional-profile`;
 const UPDATE_DIET_PROFILE_URL = `${API_BASE_URL}/update-nutritional-profile`;
 const DELETE_DIET_PROFILE_URL = `${API_BASE_URL}/delete-nutritional-profile`;
 
 // Function to create a new diet profile
-export async function createDietProfile(profileData: dietaryProfile, authToken: authenticationToken): Promise<any> {
+export async function createDietProfile(profileData: DietaryProfile, authToken: authenticationToken): Promise<any> {
   try {
     const response = await fetch(CREATE_DIET_PROFILE_URL, {
       method: "POST",
@@ -45,7 +44,7 @@ export async function getDietProfile(authToken: authenticationToken): Promise<an
 }
 
 // Function to update a diet profile
-export async function updateDietProfile(profileData: dietaryProfile, authToken: authenticationToken): Promise<any> {
+export async function updateDietProfile(profileData: DietaryProfile, authToken: authenticationToken): Promise<any> {
   try {
     const response = await fetch(UPDATE_DIET_PROFILE_URL, {
       method: "PUT",

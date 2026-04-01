@@ -1,12 +1,10 @@
 //Create a series of functions that will be used to connect to the backend and perform CRUD operations on the user data
 //This will include functions for registering a new user, loggin in, logging out, logging out, updating user and deleting user
 import { registrationFormState, loginFormState, updateProfileFormState, authenticationToken } from "../data_types/data_types";
-import dotenv from "dotenv";
-dotenv.config();
 
 
 // import user services url and create urls for register, login, logout, update and delete
-const API_BASE_URL =  process.env.USER_SERVICES_URL
+const API_BASE_URL =  process.env.REACT_APP_USER_SERVICES_URL
 const REGISTER_URL = `${API_BASE_URL}/register`;
 const LOGIN_URL = `${API_BASE_URL}/login`;
 const LOGOUT_URL = `${API_BASE_URL}/logout`;
