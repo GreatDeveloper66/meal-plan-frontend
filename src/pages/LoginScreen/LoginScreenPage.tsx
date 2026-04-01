@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/ui/Card/Card";
 import Input from "../../components/ui/Input/Input";
 import styles from "./LoginScreenPage.module.css";
 import { loginFormState, loginFormValidationState } from "../../data_types/data_types";
+import { AppContext } from "../../AppContext/AppContext";
 
 const initialFormState: loginFormState = {
   email: "",
@@ -13,6 +14,8 @@ const initialFormState: loginFormState = {
 
 export default function LoginScreenPage() {
   const navigate = useNavigate();
+  const appContext = useContext(AppContext);
+
 
   const [initialForm, setInitialForm] = useState<loginFormState>(initialFormState);
 
@@ -25,7 +28,8 @@ export default function LoginScreenPage() {
 
   const handleLogin = () => {
     if (!formIsValid) return;
-
+    appContext.setLoginFormState(initialForm);
+    appContext.loginUser()
     // 🔹 Placeholder for auth API call
     console.log("Logging in with:", { email: initialForm.email, password: initialForm.password, rememberMe: initialForm.rememberMe });
 
