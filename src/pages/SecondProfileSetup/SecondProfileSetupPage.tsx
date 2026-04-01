@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Input from "../../components/ui/Input/Input";
@@ -6,6 +6,7 @@ import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFoo
 import Card from "../../components/ui/Card/Card";
 import styles from "./SecondProfileSetupPage.module.css";
 import { FormStateForSecondUserForm, ValidationStateForSecondUserForm } from "../../data_types/data_types";
+import { AppContext } from "../../AppContext/AppContext";
 
 const initialForm: FormStateForSecondUserForm = {
   password: "",
@@ -14,6 +15,7 @@ const initialForm: FormStateForSecondUserForm = {
 
 export default function SecondProfileSetupPage() {
   const navigate = useNavigate();
+  const appContext = useContext(AppContext);
 
   const [form, setForm] = useState<FormStateForSecondUserForm>(initialForm);
 
@@ -49,6 +51,8 @@ export default function SecondProfileSetupPage() {
           onBack={() => navigate("/first-profile-setup")}
           onNext={() => {
             // TODO: hook into auth service
+            appContext.setSecondUserFormState(form);
+            appContext.registerUser();
             navigate("/third-profile-setup");
           }}
           nextDisabled={!Object.values(validation).every(Boolean)}
