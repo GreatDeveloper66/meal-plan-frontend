@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./HubPage.module.css";
+import { AppContext } from "../../AppContext/AppContext";
+import { useContext } from "react";
 
 export default function HubPage() {
   const navigate = useNavigate();
+  const appContext = useContext(AppContext);
 
   return (
     <div className={styles.wrapper}>
@@ -31,6 +34,15 @@ export default function HubPage() {
           onClick={() => navigate("/info")}
         >
           Info
+        </button>
+        <button
+          className={`${styles.hubButton} ${styles.logout}`}
+          onClick={() => {
+            appContext.logoutUser();
+            navigate("/login");
+          }}
+        >
+          Logout
         </button>
       </div>
     </div>

@@ -32,8 +32,8 @@
   display: grid;
   grid-template-areas:
     ". dashboard ."
-    "edit . info";
-  grid-template-columns: 1fr 1fr 1fr;
+    "edit . info .logout";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto auto;
   gap: 1.5rem;
   width: 100%;
@@ -89,6 +89,12 @@
 
 .info {
   grid-area: info;
+}
+
+.logout {
+  grid-area: logout;
+  background-color: #ef4444;
+  color: #ffffff;
 }
 
 /* Mobile: stack vertically */
