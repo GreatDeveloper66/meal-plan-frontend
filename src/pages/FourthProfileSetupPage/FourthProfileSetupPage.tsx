@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../AppContext/AppContext";
 
 import Card from "../../components/ui/Card/Card";
 import Input from "../../components/ui/Input/Input";
@@ -20,6 +21,7 @@ const initialForm: FormStateForFourthProfileForm = {
 
 export default function FourthProfileSetupPage() {
   const navigate = useNavigate();
+  const appContext = useContext(AppContext);
 
   const [form, setForm] = useState<FormStateForFourthProfileForm>(initialForm);
 
@@ -31,25 +33,6 @@ export default function FourthProfileSetupPage() {
     height: Number(form.height) > 0,
     heightUnit: form.heightUnit === "cm" || form.heightUnit === "in",
   };
-
-  // const [age, setAge] = useState("");
-  // const [sex, setSex] = useState("");
-  // const [weight, setWeight] = useState("");
-  // const [weightUnit, setWeightUnit] = useState("lb");
-  // const [height, setHeight] = useState("");
-  // const [heightUnit, setHeightUnit] = useState("cm");
-
-  // const ageNumber = Number(age);
-  // const weightNumber = Number(weight);
-  // const heightNumber = Number(height);
-
-  // const isAgeValid = ageNumber >= 13 && ageNumber <= 120;
-  // const isSexValid = sex.length > 0;
-  // const isWeightValid = weightNumber > 0;
-  // const isHeightValid = heightNumber > 0;
-
-  // const isFormValid =
-  //   isAgeValid && isSexValid && isWeightValid && isHeightValid;
 
   return (
     <div className={styles.wrapper}>
@@ -122,6 +105,8 @@ export default function FourthProfileSetupPage() {
             onBack={() => navigate("/third-profile-setup")}
             onNext={() => {
               // TODO: persist demographic data
+              appContext.setFourthProfileFormState(form);
+              appContext.createDietProfile();
               navigate("/hub");
             }}
             nextDisabled={!Object.values(validation).every(Boolean)}
