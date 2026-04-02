@@ -34,6 +34,13 @@ export default function FourthProfileSetupPage() {
     heightUnit: form.heightUnit === "cm" || form.heightUnit === "in",
   };
 
+  const handleNext = () => {
+    appContext.setFourthProfileFormState(form);
+    appContext.createDietProfile();
+    navigate("/hub");
+  }
+
+
   return (
     <div className={styles.wrapper}>
       <form>
@@ -105,9 +112,7 @@ export default function FourthProfileSetupPage() {
             onBack={() => navigate("/third-profile-setup")}
             onNext={() => {
               // TODO: persist demographic data
-              appContext.setFourthProfileFormState(form);
-              appContext.createDietProfile();
-              navigate("/hub");
+              handleNext();
             }}
             nextDisabled={!Object.values(validation).every(Boolean)}
           />
@@ -115,4 +120,6 @@ export default function FourthProfileSetupPage() {
       </form>
     </div>
   );
+
+
 }

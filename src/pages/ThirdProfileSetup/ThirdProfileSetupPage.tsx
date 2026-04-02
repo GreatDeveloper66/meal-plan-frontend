@@ -28,6 +28,12 @@ export default function ThirdProfileSetupPage() {
     budgetLevel: form.budgetLevel.length > 0,
   };
 
+  const handleNext = () => {
+    if(!Object.values(validation).every(Boolean)) return;
+     appContext.setThirdProfileFormState(form);
+    navigate("/fourth-profile-setup");
+  }
+
   return (
     <div className={styles.wrapper}>
       <form onSubmit={(e) => e.preventDefault()}>
@@ -79,8 +85,7 @@ export default function ThirdProfileSetupPage() {
           onBack={() => navigate("/second-profile-setup")}
           onNext={() => {
             // TODO: persist preferences + continue flow
-            appContext.setThirdProfileFormState(form);
-            navigate("/fourth-profile-setup");
+            handleNext();
           }}
           nextDisabled={!Object.values(validation).every(Boolean)}
         />
@@ -88,4 +93,5 @@ export default function ThirdProfileSetupPage() {
       </form>
     </div>
   );
+
 }

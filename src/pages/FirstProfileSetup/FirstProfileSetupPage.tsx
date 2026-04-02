@@ -82,7 +82,7 @@ export default function FirstProfileSetupPage() {
 
         <NavigationFooter
           onBack={() => navigate("/")}
-          onNext={() => navigate("/second-profile-setup")}
+          onNext={() => handleNext()}
           nextDisabled={!allValid}
         />
         </Card>
