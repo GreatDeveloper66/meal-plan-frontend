@@ -14,7 +14,8 @@ import GroceriesPage from "../pages/Groceries/GroceriesPage";
 import InfoPage from "../pages/Info/InfoPage";
 import WelcomeCarousel from "../pages/WelcomeCarousel/WelcomeCarousel";
 import MealCarousel from "../pages/MealCarousel/MealCarousel";
-import ShoppingList from "../components/ui/ShopppingList/ShoppingList";
+// import ShoppingList from "../pages/ShoppingList/ShoppingList";
+import TestPhotoCarousel from "../pages/TestPhotoCarousel/TestPhotoCarousel";
 
 export const Router = () => {
   return (
@@ -40,8 +41,8 @@ export const Router = () => {
       <Route path="/info" element={<InfoPage />} />
       <Route path="/welcome-carousel" element={<WelcomeCarousel />} />
       <Route path="/meal-carousel" element={<MealCarousel />} />
+      <Route path="/test-photo-carousel" element={<TestPhotoCarousel />} />
       <Route path="*" element={<div>404 Not Found</div>} />
-      <Route path="/shopping-list" element={<ShoppingList items={[]} onToggleItem={() => {}} onUpdateQuantity={() => {}} storeName="Example Store" />} />
 
 
       {/* Add remaining routes incrementally */}
