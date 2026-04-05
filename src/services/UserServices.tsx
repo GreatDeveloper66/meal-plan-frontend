@@ -5,11 +5,11 @@ import { registrationFormState, loginFormState, updateProfileFormState, authenti
 
 // import user services url and create urls for register, login, logout, update and delete
 const API_BASE_URL =  process.env.REACT_APP_USER_SERVICES_URL
-const REGISTER_URL = `${API_BASE_URL}/register`;
-const LOGIN_URL = `${API_BASE_URL}/login`;
-const LOGOUT_URL = `${API_BASE_URL}/logout`;
-const UPDATE_URL = `${API_BASE_URL}/update-profile`;
-const DELETE_URL = `${API_BASE_URL}/delete-user`;
+const REGISTER_URL = `${API_BASE_URL}register`;
+const LOGIN_URL = `${API_BASE_URL}login`;
+const LOGOUT_URL = `${API_BASE_URL}logout`;
+const UPDATE_URL = `${API_BASE_URL}update-profile`;
+const DELETE_URL = `${API_BASE_URL}delete-user`;
 
 
 // Function to register a new user
@@ -52,13 +52,17 @@ export async function loginUser(credentials: loginFormState): Promise<any> {
 // Function to log out a user
 export async function logoutUser(authToken: authenticationToken): Promise<any> {
   try {
-    const response = await fetch(LOGOUT_URL, {
-      method: "POST",
-      headers: { "Authorization": `Bearer ${authToken.token}` }
-    });
-    const data = await response.json();
+    //if auth token is provided then send a request to the backend to log out the user
     localStorage.removeItem("authToken"); // Remove the token from local storage
-    return data;
+    if (authToken && authToken.token) {
+      const response = await fetch(LOGOUT_URL, {
+        method: "POST",
+        headers: { "Authorization": `Bearer ${authToken.token}` }
+      });
+      return await response.json();
+    }
+    return { message: "User logged out successfully" }; // Return a success message if no token is provided
+
   } catch (error) {
     console.error("Error logging out user:", error);
     throw error;
