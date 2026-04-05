@@ -24,6 +24,13 @@ export default function SecondProfileSetupPage() {
     confirmPassword: form.confirmPassword === form.password && form.confirmPassword.length > 0,
   };
 
+  const  handleNext = () => {
+    if(!Object.values(validation).every(Boolean)) return;
+    appContext.setSecondUserFormState(form);
+    appContext.registerUser();
+    navigate("/third-profile-setup");
+  }
+
   return (
     <div className={styles.wrapper}>
       <form onSubmit={(e) => e.preventDefault()}>
@@ -51,9 +58,7 @@ export default function SecondProfileSetupPage() {
           onBack={() => navigate("/first-profile-setup")}
           onNext={() => {
             // TODO: hook into auth service
-            appContext.setSecondUserFormState(form);
-            appContext.registerUser();
-            navigate("/third-profile-setup");
+            handleNext();
           }}
           nextDisabled={!Object.values(validation).every(Boolean)}
         />
@@ -61,4 +66,6 @@ export default function SecondProfileSetupPage() {
       </form>
     </div>
   );
+
+  
 }

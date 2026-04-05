@@ -1,4 +1,4 @@
-import { ShoppingItem } from "../data_types/data_types";
+import { ShoppingListItem } from "../data_types/data_types";
 
 // Food category emoji mapping
 const categoryEmojis: Record<string, string> = {
@@ -33,7 +33,7 @@ const getFoodImage = (foodName: string, category: string) => {
   return `https://via.placeholder.com/60x60/${categoryColor}/FFFFFF?text=${encodedName.slice(0, 3)}`;
 };
 
-export const dummyShoppingList: ShoppingItem[] = [
+export const dummyShoppingList: ShoppingListItem[] = [
   {
     id: "item_1",
     name: "Organic Avocados",

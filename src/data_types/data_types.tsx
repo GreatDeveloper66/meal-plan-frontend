@@ -1,5 +1,5 @@
 //make a list of data types that we will be using in our application so that we can easily import them into our components and services
-export interface ShoppingItem {
+export interface ShoppingListItem {
   id: string;
   name: string;
   quantity: string;
@@ -48,7 +48,7 @@ export type Meal = {
   foods: FoodItem[];
 };
 
-export type places = {
+export type place = {
     placeId: string;
     name: string;
     displayName?: string;
@@ -76,6 +76,8 @@ export type places = {
     };
     distanceFromCurrentLocation?: number;
 }
+
+export type places = place[];
 
 export type FormStateForSecondUserForm = {
   password: string;
@@ -167,3 +169,14 @@ export type DietaryProfile = {
   dietaryPreferences: string[];
   budgetLevel: "low" | "normal" | "high";
 }
+export type ShoppingListItemProps = {
+    id: string;
+    name: string;
+    quantity: string;
+    estimatedPrice?: number;
+    imageUrl?: string;
+    category?: string;
+    completed?: boolean;
+    onToggleComplete?: (id: string, completed: boolean) => void;
+    onUpdateQuantity?: (id: string, quantity: string) => void;
+};

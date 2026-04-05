@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/ui/Card/Card";
 import Input from "../../components/ui/Input/Input";
-import NavigationFooter from "../../components/ui/NavigationFooter/NavigationFooter";
 import styles from "./FirstEditPage.module.css";
 import SelectInput from "../../components/ui/SelectInput/SelectInput";
 import { FormStateForFourthProfileForm, ValidationStateForFourthProfileForm } from "../../data_types/data_types";

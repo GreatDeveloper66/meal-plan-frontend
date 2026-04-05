@@ -114,6 +114,14 @@ export default function MealCarousel() {
               );
             })}
           </Carousel>
+          {/* add button to return to hub page */}
+          <button
+            className={styles.backButton}
+            onClick={() => navigate("/hub")}
+          >
+            Return to Hub
+          </button>
+
 
           <button
             className={styles.continueButton}
