@@ -6,10 +6,10 @@ import { DietaryProfile, authenticationToken } from "../data_types/data_types";
 
 // import diet profile services url and create urls for get, create, update and delete diet profile
 const API_BASE_URL =  process.env.REACT_APP_DIET_PROFILE_SERVICES_URL
-const CREATE_DIET_PROFILE_URL = `${API_BASE_URL}/create-nutritional-profile`;
-const GET_DIET_PROFILE_URL = `${API_BASE_URL}/get-nutritional-profile`;
-const UPDATE_DIET_PROFILE_URL = `${API_BASE_URL}/update-nutritional-profile`;
-const DELETE_DIET_PROFILE_URL = `${API_BASE_URL}/delete-nutritional-profile`;
+const CREATE_DIET_PROFILE_URL = `${API_BASE_URL}create-nutritional-profile`;
+const GET_DIET_PROFILE_URL = `${API_BASE_URL}get-nutritional-profile`;
+const UPDATE_DIET_PROFILE_URL = `${API_BASE_URL}update-nutritional-profile`;
+const DELETE_DIET_PROFILE_URL = `${API_BASE_URL}delete-nutritional-profile`;
 
 // Function to create a new diet profile
 export async function createDietProfile(profileData: DietaryProfile, authToken: authenticationToken): Promise<any> {
