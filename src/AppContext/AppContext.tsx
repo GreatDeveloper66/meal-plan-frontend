@@ -40,7 +40,7 @@ export const AppContext = createContext({
   updateProfileFormState: {} as updateProfileFormState,
   authenticationToken: {} as authenticationToken,
   locationAndRadiusFormState: {} as locationAndRadiusFormState,
-  places: [] as places[],
+  places: [] as places,
   setFirstUserFormState: (data: FormStateForFirstUserForm) => {
     (AppContext as any).firstUserFormState = data;
   },
