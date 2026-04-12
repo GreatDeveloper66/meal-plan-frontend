@@ -41,6 +41,7 @@ export default function SecondProfileSetupPage() {
             label="Password"
             type="password"
             value={form.password}
+            autoComplete="new-password"
             onChange={(v) => setForm((prev) => ({ ...prev, password: v }))}
             isValid={validation.password}
           />
@@ -49,9 +50,10 @@ export default function SecondProfileSetupPage() {
             label="Confirm Password"
             type="password"
             value={form.confirmPassword}
+            autoComplete="new-password"
             onChange={(v) => setForm((prev) => ({ ...prev, confirmPassword: v }))}
             isValid={validation.confirmPassword}
-          />
+            />
         </div>
 
         <NavigationFooter

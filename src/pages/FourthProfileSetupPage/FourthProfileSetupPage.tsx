@@ -35,6 +35,13 @@ export default function FourthProfileSetupPage() {
   };
 
   const handleNext = () => {
+    Object.values(validation).forEach((isValid) => {
+      if (!isValid) {
+        // In a real app, you'd want to show specific error messages for each field
+        alert("Please fill out all fields correctly before proceeding.");
+        return;
+      }
+    });
     appContext.setFourthProfileFormState(form);
     appContext.createDietProfile();
     navigate("/hub");

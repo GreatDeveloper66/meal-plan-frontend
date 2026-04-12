@@ -44,21 +44,21 @@ import nutritionImage from "../../images/nutrition.jpg";
 const slides = [
   {
     title: "Personalized meal planning",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "Create meal plans tailored to your dietary preferences and goals. Our AI-powered system generates delicious recipes and shopping lists based on your unique profile.",
     imageSrc: mealImage,
     imageAlt: "Meal planning illustration",
     imageTooltip: "Photo by <a href='https://unsplash.com/@khloephoto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>khloe arledge</a> on <a href='https://unsplash.com/photos/bowl-of-vegetables-V7hibs9xhe4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>"
   },
   {
     title: "Smart grocery lists",
-    description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
+    description: "Easily create and manage grocery lists based on your meal plans. Our smart lists automatically update as you modify your meals, ensuring you always have the ingredients you need.", 
     imageSrc: groceryListImage,
     imageAlt: "Grocery list illustration",
     imageTooltip: "Photo by <a href='https://unsplash.com/@tobben63?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Torbjørn Helgesen</a> on <a href='https://unsplash.com/photos/a-notepad-with-a-green-pen-on-top-of-it-dz35efCT3ZA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>" 
   },
   {
     title: "Track your nutrition",
-    description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    description: "Monitor your nutritional intake and progress towards your health goals. Our intuitive tracking tools make it easy to log meals, analyze nutrients, and stay on top of your wellness journey.",
     imageSrc: nutritionImage,
     imageAlt: "Nutrition tracking illustration",
     imageTooltip: "Photo by <a href='https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Markus Winkler</a> on <a href='https://unsplash.com/photos/a-wooden-block-spelling-nutrition-on-a-table-3LQKDH-r-jI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'>Unsplash</a>"

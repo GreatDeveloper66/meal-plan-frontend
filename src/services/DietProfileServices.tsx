@@ -22,7 +22,9 @@ export async function createDietProfile(profileData: DietaryProfile, authToken: 
       },
         body: JSON.stringify(profileData),
     });
-    return await response.json();
+    const data =  await response.json();
+    console.log("Diet profile created successfully:", data);
+    return data;
   } catch (error) {
     console.error("Error creating diet profile:", error);
     throw error;
