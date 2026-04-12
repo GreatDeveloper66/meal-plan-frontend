@@ -1,12 +1,5 @@
+import { InputProps } from "../../../data_types/data_types";
 import styles from "./Input.module.css";
-
-export type InputProps = {
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  isValid: boolean;
-  type?: React.HTMLInputTypeAttribute;
-};
 
 export default function Input({
   label,
@@ -14,6 +7,7 @@ export default function Input({
   onChange,
   isValid,
   type = "text",
+  autoComplete,
 }: InputProps) {
   const showState = value.length > 0;
 
@@ -22,6 +16,7 @@ export default function Input({
       <span className={styles.label}>{label}</span>
       <input
         type={type}
+        autoComplete={autoComplete}
         className={`${styles.input} ${
           showState ? (isValid ? styles.valid : styles.invalid) : ""
         }`}
