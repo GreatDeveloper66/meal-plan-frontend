@@ -1,0 +1,130 @@
+.mealCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Desktop: 3 columns side by side */
+@media (min-width: 768px) {
+  .mealCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+}
+
+/* Image Section */
+.imageSection {
+  width: 100%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: #f1f5f9;
+}
+
+.mealImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.mealImage:hover {
+  transform: scale(1.02);
+}
+
+/* Ingredients Section */
+.ingredientsSection {
+  flex: 1;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.ingredientsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredientItem {
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.ingredientItem:last-child {
+  border-bottom: none;
+}
+
+.ingredientName {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.ingredientQuantity {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+/* Macros Section */
+.macrosSection {
+  flex: 1;
+}
+
+.macrosList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.macroItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.macroItem:last-child {
+  border-bottom: none;
+}
+
+.macroLabel {
+  font-weight: 500;
+  color: #475569;
+  font-size: 0.875rem;
+}
+
+.macroValue {
+  font-weight: 600;
+  color: #2563eb;
+  font-size: 0.875rem;
+  font-family: monospace;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .mealCard {
+    gap: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .ingredientItem,
+  .macroItem {
+    padding: 0.375rem 0;
+    font-size: 0.8rem;
+  }
+}
