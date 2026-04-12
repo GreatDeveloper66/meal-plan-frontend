@@ -8,14 +8,8 @@ export interface ShoppingListItem {
   category?: string;
   completed?: boolean;
 }
-type MealItem = {
-  food: string;
-  quantity: string;
-};
-export type MealPlan = {
-  meal: "Breakfast" | "Lunch" | "Dinner";
-  items: MealItem[];
-};export type FormStateForFirstUserForm = {
+
+export type FormStateForFirstUserForm = {
   firstName: string;
   lastName: string;
   email: string;
@@ -46,6 +40,12 @@ export type Meal = {
   id: string;
   name: "breakfast" | "lunch" | "dinner";
   foods: FoodItem[];
+};
+
+export type MealPlan = {
+  id: string;
+  date: string; // ISO date string
+  meals: Meal[];
 };
 
 export type place = {
@@ -179,4 +179,12 @@ export type ShoppingListItemProps = {
     completed?: boolean;
     onToggleComplete?: (id: string, completed: boolean) => void;
     onUpdateQuantity?: (id: string, quantity: string) => void;
+};export type InputProps = {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  isValid: boolean;
+  type?: React.HTMLInputTypeAttribute;
+  autoComplete?: string;
 };
+
