@@ -187,4 +187,8 @@ export type ShoppingListItemProps = {
   type?: React.HTMLInputTypeAttribute;
   autoComplete?: string;
 };
+export type MealCardProps = {
+  meal: Meal;
+  mealImageUrl?: string;
+};
 

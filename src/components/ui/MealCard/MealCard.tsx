@@ -1,26 +1,6 @@
 import styles from "./MealCard.module.css";
 import Card from "../Card/Card";
-
-export type FoodItem = {
-  id: string;
-  name: string;
-  calories: number;
-  protein: number;
-  carbs: number;
-  fat: number;
-  quantity?: string;
-};
-
-export type Meal = {
-  id: string;
-  name: "breakfast" | "lunch" | "dinner";
-  foods: FoodItem[];
-};
-
-type MealCardProps = {
-  meal: Meal;
-  mealImageUrl?: string;
-};
+import { MealCardProps } from "../../../data_types/data_types";
 
 export default function MealCard({ meal, mealImageUrl }: MealCardProps) {
   // Calculate total macros for the meal
