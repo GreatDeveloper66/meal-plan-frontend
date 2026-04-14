@@ -49,32 +49,32 @@ export type MealPlan = {
 };
 
 export type place = {
-    placeId: string;
-    name: string;
-    displayName?: string;
-    latitude?: number;
-    longitude?: number;
-    types?: string[];
-    formattedAddress?: string;
-    businessStatus?: string;
-    regularOpeningHours?: any;
-    currentOpeningHours?: any;
-    rating?: number;
-    userRatingCount?: number;
-    photos?: { url: string; width: number; height: number }[];
-    photoCount?: number;
-    priceLevel?: number;
-    phoneNumber?: string;
-    website?: string;
-    hoursStatus?: {
-        isOpen: boolean;
-        message: string;
-        hoursUntilClose?: number;
-        hoursUntilOpen?: number;
-        nextCloseTime?: string;
-        nextOpenTime?: string;
-    };
-    distanceFromCurrentLocation?: number;
+  placeId: string;
+  name: string;
+  displayName?: string;
+  latitude?: number;
+  longitude?: number;
+  types?: string[];
+  formattedAddress?: string;
+  businessStatus?: string;
+  regularOpeningHours?: any;
+  currentOpeningHours?: any;
+  rating?: number;
+  userRatingCount?: number;
+  photos?: { url: string; width: number; height: number }[];
+  photoCount?: number;
+  priceLevel?: number;
+  phoneNumber?: string;
+  website?: string;
+  hoursStatus?: {
+    isOpen: boolean;
+    message: string;
+    hoursUntilClose?: number;
+    hoursUntilOpen?: number;
+    nextCloseTime?: string;
+    nextOpenTime?: string;
+  };
+  distanceFromCurrentLocation?: number;
 }
 
 export type places = place[];
@@ -170,16 +170,16 @@ export type DietaryProfile = {
   budgetLevel: "low" | "normal" | "high";
 }
 export type ShoppingListItemProps = {
-    id: string;
-    name: string;
-    quantity: string;
-    estimatedPrice?: number;
-    imageUrl?: string;
-    category?: string;
-    completed?: boolean;
-    onToggleComplete?: (id: string, completed: boolean) => void;
-    onUpdateQuantity?: (id: string, quantity: string) => void;
-};export type InputProps = {
+  id: string;
+  name: string;
+  quantity: string;
+  estimatedPrice?: number;
+  imageUrl?: string;
+  category?: string;
+  completed?: boolean;
+  onToggleComplete?: (id: string, completed: boolean) => void;
+  onUpdateQuantity?: (id: string, quantity: string) => void;
+}; export type InputProps = {
   label: string;
   value: string;
   onChange: (value: string) => void;
@@ -191,4 +191,18 @@ export type MealCardProps = {
   meal: Meal;
   mealImageUrl?: string;
 };
+
+type MealImage = {
+  mealImageUrl: string;
+};
+
+export type MealPlanImages = {
+  MealPlanImagesUrls: MealImage[];
+}
+
+// Create props for MealCardList component
+export type MealCardListProps = {
+  mealPlan: MealPlan;
+  mealPlanImages: MealPlanImages;
+}
 

@@ -17,6 +17,7 @@ import MealCarousel from "../pages/MealCarousel/MealCarousel";
 // import ShoppingList from "../pages/ShoppingList/ShoppingList";
 import TestPhotoCarousel from "../pages/TestPhotoCarousel/TestPhotoCarousel";
 import TestMealCard from "../components/ui/TestMealCard/TestMealCard";
+import MealCardList from "../components/ui/MealCardList/MealCardList";
 
 
 
@@ -46,6 +47,7 @@ export const Router = () => {
       <Route path="/meal-carousel" element={<MealCarousel />} />
       <Route path="/test-photo-carousel" element={<TestPhotoCarousel />} />
       <Route path="/test-meal-card" element={<TestMealCard />} />
+      <Route path="/meal-card-list" element={<MealCardList />} />
       <Route path="*" element={<div>404 Not Found</div>} />
 
 
