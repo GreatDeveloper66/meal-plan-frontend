@@ -206,3 +206,8 @@ export type MealCardListProps = {
   mealPlanImages: MealPlanImages;
 }
 
+
+export type MealPlanWithImages = {
+  mealPlan: MealPlan;
+  mealPlanImages: MealPlanImages;
+}
