@@ -17,6 +17,7 @@ import {
   updateDietProfile,
   deleteDietProfile,
 } from "../services/DietProfileServices";
+import { getUserMealPlan } from "../services/UserMealPlanServices";
 import {
   FormStateForFirstUserForm,
   FormStateForSecondUserForm,
@@ -28,7 +29,8 @@ import {
   authenticationToken,
   locationAndRadiusFormState,
   DietaryProfile,
-  places
+  places,
+  MealPlan
 } from "../data_types/data_types";
 
 export const AppContext = createContext({
@@ -41,6 +43,8 @@ export const AppContext = createContext({
   authenticationToken: {} as authenticationToken,
   locationAndRadiusFormState: {} as locationAndRadiusFormState,
   places: [] as places,
+  dietaryProfile :{} as DietaryProfile,
+  mealPlan: {} as MealPlan,
   setFirstUserFormState: (data: FormStateForFirstUserForm) => {
     (AppContext as any).firstUserFormState = data;
   },
@@ -206,5 +210,20 @@ export const AppContext = createContext({
             (AppContext as any).places = [...data];
         }
         return data;
-    }
+    },
+    createUserMealPlan: async () => {
+        //first see if user already has a meal plan stored in mongoDB using getMealPlan from UserMealPlanServices
+        const mealPlanData = await getUserMealPlan(
+            (AppContext as any).authenticationToken.token,
+        );
+        //if user already has a meal plan stored in mongoDB, return the meal plan data
+        if (mealPlanData) {
+            return mealPlanData;
+        }
+        //if user does not have a meal plan stored in mongoDB, create a new meal plan using createMealPlan from UserMealPlanServices
+        const data = await storeUserMealPlan(
+            (AppContext as any).authenticationToken.token,
+        );
+        return data;
+      },
 });
