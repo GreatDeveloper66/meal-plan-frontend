@@ -40,13 +40,19 @@ export type Meal = {
   id: string;
   name: "breakfast" | "lunch" | "dinner";
   foods: FoodItem[];
+  price?: number;
+  image?: string;
 };
+
+
 
 export type MealPlan = {
   id: string;
   date: string; // ISO date string
   meals: Meal[];
+  price?: number;
 };
+
 
 export type place = {
   placeId: string;
@@ -211,3 +217,14 @@ export type MealPlanWithImages = {
   mealPlan: MealPlan;
   mealPlanImages: MealPlanImages;
 }
+
+export type MealPlanUpdatedResponse = {
+  acknowledged: boolean;
+  modifiedCount: number;
+  upsertedId: null;
+  upsertedCount: number;
+  matchedCount: number;
+}
+
+
+
