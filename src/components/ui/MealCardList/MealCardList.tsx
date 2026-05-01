@@ -2,7 +2,12 @@
 
 import MealCard from "../MealCard/MealCard";
 import styles from "./MealCardList.module.css";
+import { DietaryProfile } from "../../../data_types/data_types";
 import { MealPlan, MealPlanImages, MealCardListProps, MealCardProps } from "../../../data_types/data_types";
+import { useContext } from "react";
+import { AppContext} from "../../../AppContext/AppContext";
+
+
 
 // Dummy meal plan data
 const dummyMealPlan: MealPlan = {
@@ -105,6 +110,8 @@ const fallbackMealImages: string[] = [
   "../../../images/generic_dinner.png"
 ];
 
+
+
 const mealCardListData: MealCardListProps = {
   mealPlan: dummyMealPlan,
   mealPlanImages: dummyMealPlanImages
@@ -112,6 +119,9 @@ const mealCardListData: MealCardListProps = {
 
 //create meal list function that takes meal card list props and returns a list of meal cards with the meal name as the title of each card and the meal image as the image for each card and the ingredients and macros as the content of each card and make sure to style the cards with dividing lines between each section and make sure to test the responsiveness of the cards on desktop and mobile devices
 export default function MealCardList() {
+    const appContext = useContext(AppContext);
+    const dietaryProfile = appContext.dietaryProfile;
+    appContext.createMealPlan(dietaryProfile);
     const { mealPlan, mealPlanImages } = mealCardListData;
     const combinedMealCardData: MealCardProps[] = mealPlan.meals.map((meal, index) => ({
         meal,
